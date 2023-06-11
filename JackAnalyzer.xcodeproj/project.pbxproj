@@ -31,6 +31,7 @@
 		8502CBB82A33E37E00DF39C6 /* JackTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackTokenizer.swift; sourceTree = "<group>"; };
 		8502CBBA2A33E39000DF39C6 /* CompilationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompilationEngine.swift; sourceTree = "<group>"; };
 		8502CBBC2A33E3E300DF39C6 /* JackAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackAnalyzer.swift; sourceTree = "<group>"; };
+		85360C632A34D05000BB3E36 /* ExpressionPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ExpressionPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,7 @@
 		8502CBB02A33E34400DF39C6 /* JackAnalyzer */ = {
 			isa = PBXGroup;
 			children = (
+				85360C632A34D05000BB3E36 /* ExpressionPlayground.playground */,
 				8502CBB12A33E34400DF39C6 /* main.swift */,
 				8502CBB82A33E37E00DF39C6 /* JackTokenizer.swift */,
 				8502CBBA2A33E39000DF39C6 /* CompilationEngine.swift */,

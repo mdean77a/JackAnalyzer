@@ -7,7 +7,6 @@
 
 import Foundation
 
-print("Hello, World! from the main entry point")
 var analyzer = JackAnalyzer()
 analyzer.run()
 
