@@ -11,6 +11,7 @@
 		8502CBB92A33E37E00DF39C6 /* JackTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502CBB82A33E37E00DF39C6 /* JackTokenizer.swift */; };
 		8502CBBB2A33E39000DF39C6 /* CompilationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502CBBA2A33E39000DF39C6 /* CompilationEngine.swift */; };
 		8502CBBD2A33E3E300DF39C6 /* JackAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502CBBC2A33E3E300DF39C6 /* JackAnalyzer.swift */; };
+		859895AB2A37CC2A00E5FF15 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859895AA2A37CB8D00E5FF15 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,8 @@
 		8502CBBA2A33E39000DF39C6 /* CompilationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompilationEngine.swift; sourceTree = "<group>"; };
 		8502CBBC2A33E3E300DF39C6 /* JackAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JackAnalyzer.swift; sourceTree = "<group>"; };
 		85360C632A34D05000BB3E36 /* ExpressionPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ExpressionPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		85360C662A378AF800BB3E36 /* RegexTutorial.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RegexTutorial.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		859895AA2A37CB8D00E5FF15 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +51,7 @@
 		8502CBA52A33E34400DF39C6 = {
 			isa = PBXGroup;
 			children = (
+				85360C662A378AF800BB3E36 /* RegexTutorial.playground */,
 				8502CBB02A33E34400DF39C6 /* JackAnalyzer */,
 				8502CBAF2A33E34400DF39C6 /* Products */,
 			);
@@ -69,6 +73,7 @@
 				8502CBB82A33E37E00DF39C6 /* JackTokenizer.swift */,
 				8502CBBA2A33E39000DF39C6 /* CompilationEngine.swift */,
 				8502CBBC2A33E3E300DF39C6 /* JackAnalyzer.swift */,
+				859895AA2A37CB8D00E5FF15 /* Extensions.swift */,
 			);
 			path = JackAnalyzer;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859895AB2A37CC2A00E5FF15 /* Extensions.swift in Sources */,
 				8502CBBD2A33E3E300DF39C6 /* JackAnalyzer.swift in Sources */,
 				8502CBB92A33E37E00DF39C6 /* JackTokenizer.swift in Sources */,
 				8502CBBB2A33E39000DF39C6 /* CompilationEngine.swift in Sources */,

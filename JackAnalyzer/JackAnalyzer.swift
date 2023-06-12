@@ -61,7 +61,7 @@ struct JackAnalyzer{
                 else {
                     print("ERROR: Could not create target xml file.")
                     return}
-
+                
                 processFile(fileName: fileName)
                 
                 fclose(sourceFile)
@@ -74,8 +74,8 @@ struct JackAnalyzer{
         
         var stillInCommentBlock = false
         
-        while let line = readLine(){
-
+        while var line = readLine(){
+            
             if tokenizer.commentOrBlankLine(line: line){
                 continue
             }
@@ -99,18 +99,19 @@ struct JackAnalyzer{
             // So now only relevant lines go through
             
             if let temp = tokenizer.discardMidlineComment(line: line){
-                print(temp)
-                continue
+                line = temp
             }
             
-            print(line)
+            tokenizer.eatToken(line:line)
+            
         }
+        
     }
-    
     func run() {
         openFiles()
     }
 }
+
 
 
 

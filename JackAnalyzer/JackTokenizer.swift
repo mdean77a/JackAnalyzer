@@ -69,6 +69,46 @@ let midLineComment = Regex {
     }
 }
 
+let keyWordSet : Set<String> = ["class","constructor","function","method","field","static",
+                                "var","int","char","boolean","void","true","false","null","this",
+                                "let","do","if","else","while","return"]
+
+let keyWords = Regex {
+    ChoiceOf {
+        "class";"constructor";"function";"method";"field";"static"
+        "var";"int";"char";"boolean";"void";"true";"false";"null";"this"
+        "let";"do";"if";"else";"while";"return"
+    }
+}
+
+let symbolSet : Set<String> = ["{","}","(",")","[","]",".",",",";","+","-","*","/","&","|","<",">","=","~"]
+
+let symbols = Regex {
+    ChoiceOf{
+        "{";"}";"(";")";"[";"]";".";",";";";"+";"-";"*";"/";"&";"|";"<";">";"=";"~"
+    }
+}
+
+let separator = Regex {/\s*/}
+
+let processString = Regex {
+    Anchor.startOfLine
+    separator
+    Capture{
+        ChoiceOf{
+            keyWords
+            symbols
+        }
+    }
+    ChoiceOf{
+        separator
+        Anchor.endOfLine
+    }
+}
+
+
+
+    
 struct JackTokenizer {
     
     func commentOrBlankLine(line:String) -> Bool {
@@ -103,5 +143,24 @@ struct JackTokenizer {
         }
     }
     
-
+    func printToken(token:String){
+        if keyWordSet.contains(token) {
+            print("<keyword> \(token) </keyword>")
+        } else if symbolSet.contains(token){
+            print("<symbol> \(token) </symbol>")
+        }
+    }
+    
+    func eatToken(line:String) -> Void {
+            var newLine = line.trim()
+            if let match = try? processString.firstMatch(in: newLine){
+                let token = String(match.1)
+                printToken(token: token)
+                let tokenRange = token.startIndex..<token.endIndex
+                newLine.removeSubrange(tokenRange)
+                eatToken(line: newLine)
+            } else {
+                return
+            }
+    }
 }
