@@ -57,7 +57,7 @@ struct JackAnalyzer{
                     print("ERROR: Could not open the source file.")
                     return
                 }
-                guard let xmlFile = freopen(fileName + ".xmlout", "w", stdout)
+                guard let xmlFile = freopen(fileName + "T.xmlout", "w", stdout)
                 else {
                     print("ERROR: Could not create target xml file.")
                     return}
@@ -73,7 +73,7 @@ struct JackAnalyzer{
     func processFile(fileName:String){
         
         var stillInCommentBlock = false
-        
+        print("<tokens>")
         while var line = readLine(){
             
             if tokenizer.commentOrBlankLine(line: line){
@@ -105,7 +105,7 @@ struct JackAnalyzer{
             tokenizer.eatToken(line:line)
             
         }
-        
+        print("</tokens>")
     }
     func run() {
         openFiles()

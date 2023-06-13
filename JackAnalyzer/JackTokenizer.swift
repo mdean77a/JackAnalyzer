@@ -9,23 +9,24 @@ import Foundation
 import RegexBuilder
 
 
+let separator = Regex {/\s*/}
 
 let blankLine = Regex {
     Anchor.startOfLine
-    /\s*/
+    separator
     Anchor.endOfLine
 }
 
 let comment = Regex {
     Anchor.startOfLine
-    /\s*/
+    separator
     /\/\//
     ZeroOrMore(.any)
 }
 
 let specialComment = Regex {
     Anchor.startOfLine
-    /\s*/
+    separator
     /\/\*\*/
     ZeroOrMore(.any)
     /\*\//
@@ -35,7 +36,7 @@ let specialComment = Regex {
 
 let multilineComment = Regex {
     Anchor.startOfLine
-    /\s*/
+    separator
     /\/\*\*/
     ZeroOrMore(.any)
     Anchor.endOfLine
@@ -69,6 +70,19 @@ let midLineComment = Regex {
     }
 }
 
+let identifierPattern = Regex {
+    OneOrMore{
+        /[a-zA-Z_]/
+    }
+    ZeroOrMore{
+        /[a-zA-Z_0-9]/
+    }
+}
+
+let digitPattern = Regex {
+    /\d+/
+}
+
 let keyWordSet : Set<String> = ["class","constructor","function","method","field","static",
                                 "var","int","char","boolean","void","true","false","null","this",
                                 "let","do","if","else","while","return"]
@@ -89,7 +103,11 @@ let symbols = Regex {
     }
 }
 
-let separator = Regex {/\s*/}
+let stringPattern = Regex {
+    /"/
+    OneOrMore(.any)
+    /"/
+}
 
 let processString = Regex {
     Anchor.startOfLine
@@ -98,6 +116,9 @@ let processString = Regex {
         ChoiceOf{
             keyWords
             symbols
+            identifierPattern
+            digitPattern
+            stringPattern
         }
     }
     ChoiceOf{
@@ -147,7 +168,25 @@ struct JackTokenizer {
         if keyWordSet.contains(token) {
             print("<keyword> \(token) </keyword>")
         } else if symbolSet.contains(token){
-            print("<symbol> \(token) </symbol>")
+            switch token {
+            case "<":print("<symbol> &lt; </symbol>")
+            case "&":print("<symbol> &amp; </symbol>")
+            case ">":print("<symbol> &gt; </symbol>")
+            case "\"":print("<symbol> &quot; </symbol>")
+            default:print("<symbol> \(token) </symbol>")
+            }
+            
+        } else if token[token.startIndex].isLetter{
+            print("<identifier> \(token) </identifier>")
+        } else if token[token.startIndex] == "_" {
+            print("<identifier> \(token) </identifier>")
+        } else if token[token.startIndex].isNumber{
+            print("<integerConstant> \(token) </integerConstant>")
+        } else if token[token.startIndex] == "\""{
+            var newtoken = token
+            newtoken.remove(at: newtoken.startIndex)
+            newtoken.remove(at: newtoken.index(before: newtoken.endIndex))
+            print("<stringConstant> \(newtoken) </stringConstant>")
         }
     }
     

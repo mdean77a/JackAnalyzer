@@ -108,21 +108,6 @@ let processString = Regex {
     }
 }
 
-//var jackLine = "  function  class return  method   constructor return class "
-//var token = ""
-//if let match = try? processString.firstMatch(in: jackLine){
-//    let token = String(match.1)
-//    let firstLetter = token[token.startIndex]
-//    var emptySpace = jackLine.firstIndex(of: firstLetter)
-//    jackLine.removeSubrange(jackLine.startIndex..<emptySpace!)
-//    let tokenRange = token.startIndex..<token.endIndex
-//    jackLine.removeSubrange(tokenRange)
-//    print(jackLine)
-//
-//    //eatToken(token:token, line:jackLine
-//} else {
-//    print("match failed")
-//}
 
 
 func eatToken(line:String) -> String? {
@@ -139,18 +124,35 @@ func eatToken(line:String) -> String? {
         return nil
     }
 }
-var jackLine = "  function  class return  method   constructor return class "
-var executionCount = 0
-repeat {
-    executionCount += 1
-    print(executionCount)
-    print(jackLine.count)
-    if var jackLine = eatToken(line:jackLine){
-        continue
-    } else {
-        exit
+var jackLine = "   class return  method   constructor return class "
+var idLine = "   _fd_78gf_ _99ff"
+//var executionCount = 0
+//repeat {
+//    executionCount += 1
+//    print(executionCount)
+//    print(jackLine.count)
+//    if var jackLine = eatToken(line:jackLine){
+//        continue
+//    } else {
+//        exit
+//    }
+//} while jackLine.count > 1
+
+let identifierPattern = Regex {
+    Anchor.startOfLine
+    separator
+    Capture{
+        OneOrMore{
+            /[a-zA-Z_]/
+        }
+        ZeroOrMore{
+            /[a-zA-Z_0-9]/
+        }
     }
-} while jackLine.count > 1
-
-
-
+}
+ 
+if let match = try? identifierPattern.firstMatch(in: idLine){
+    print(String(match.1))
+} else {
+    print("Match failed")
+}
