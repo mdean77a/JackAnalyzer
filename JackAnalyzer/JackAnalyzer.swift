@@ -10,6 +10,18 @@ import Foundation
 
 var fileName = ""
 
+enum TokenType {
+    case KEYWORD, SYMBOL, IDENTIFIER, INT_CONST, STRING_CONST
+}
+
+enum Keyword {
+    case CLASS, CONSTRUCTOR, FUNCTION, METHOD, FIELD, STATIC,
+         VAR, INT, CHAR, BOOLEAN, VOID, TRUE, FALSE, NULL, THIS,
+         LET, DO, IF, ELSE, WHILE, RETURN
+}
+
+
+
 struct JackAnalyzer{
     var tokenizer = JackTokenizer()
     var compiler = CompilationEngine()
@@ -76,32 +88,31 @@ struct JackAnalyzer{
         print("<tokens>")
         while var line = readLine(){
             
+            // Kill blank lines and single line comments
             if tokenizer.commentOrBlankLine(line: line){
                 continue
             }
             
+            // Handle comments that open and close on different lines
             if tokenizer.openMultilineComment(line: line){
                 stillInCommentBlock = true
                 continue
             }
-            
             if tokenizer.closeMultilineComment(line: line){
                 stillInCommentBlock = false
                 continue
             }
-            
             if stillInCommentBlock {
                 continue
             }
             
-            // At this point we have skipped all blanklines, full comment lines
-            // and we have filtered out multiline comment blocks
-            // So now only relevant lines go through
-            
+            // Now trim off comments that start in middle of a line
             if let temp = tokenizer.discardMidlineComment(line: line){
                 line = temp
             }
             
+            // At this point, the line only contains elements that are within
+            // the Jack lexicon, so we process these lines to capture all tokens.
             tokenizer.eatToken(line:line)
             
         }
