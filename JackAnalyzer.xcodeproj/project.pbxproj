@@ -35,6 +35,7 @@
 		85360C632A34D05000BB3E36 /* ExpressionPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ExpressionPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		85360C662A378AF800BB3E36 /* RegexTutorial.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RegexTutorial.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		859895AA2A37CB8D00E5FF15 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		85CA94D22A3BD39300D8B60A /* nand2tetris */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nand2tetris; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,7 @@
 		8502CBA52A33E34400DF39C6 = {
 			isa = PBXGroup;
 			children = (
+				85CA94D22A3BD39300D8B60A /* nand2tetris */,
 				85360C662A378AF800BB3E36 /* RegexTutorial.playground */,
 				8502CBB02A33E34400DF39C6 /* JackAnalyzer */,
 				8502CBAF2A33E34400DF39C6 /* Products */,
