@@ -157,14 +157,14 @@ struct JackTokenizer {
         }
     }
     
-    func eatToken(line:String) -> Void {
+    func eatInputLine(line:String) -> Void {
         var newLine = line.trimmingCharacters(in:CharacterSet.whitespaces)
         if let match = try? processString.firstMatch(in: newLine){
             let token = String(match.1)
             printToken(token: token)
             let tokenRange = token.startIndex..<token.endIndex
             newLine.removeSubrange(tokenRange)
-            eatToken(line: newLine)
+            eatInputLine(line: newLine)
         } else {
             return
         }

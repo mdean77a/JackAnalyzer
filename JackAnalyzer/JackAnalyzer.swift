@@ -113,7 +113,7 @@ struct JackAnalyzer{
             
             // At this point, the line only contains elements that are within
             // the Jack lexicon, so we process these lines to capture all tokens.
-            tokenizer.eatToken(line:line)
+            tokenizer.eatInputLine(line:line)
             
         }
         print("</tokens>")
